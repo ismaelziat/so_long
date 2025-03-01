@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:12:27 by iziat-hi          #+#    #+#             */
-/*   Updated: 2025/02/15 14:33:47 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:24:58 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	process_map_part_2(t_game *g, int x, int y)
 	}
 	else if ((g->map.grid[y][x] != '\n') && (g->map.grid[y][x] != '\0'))
 	{
+		printf("OLAOLA %c\n", g->map.grid[y][x]);
+		
 		printf("unvalid map, unvalid character found");
 		close_window(g);
 	}
@@ -92,47 +94,6 @@ void	count_x_y(const char *map_path, t_game *game, int *w_w, int *w_h)
 	printf("valor de y = %d\n", game->map.height);
 }
 
-/* void	count_x_y(const char *map_path, t_game *game, int *w_w, int *w_h)
-{
-int		fd;
-char	*line;
-int		max_line_len;
-int		line_num;
-int line_length;
-
-max_line_len = 0;
-fd = open(map_path, O_RDONLY);
-game->map.width = 0;
-game->map.height = 0;
-line = get_next_line(fd);
-line_num = 1;
-while (line != NULL)
-{
-	line_length = (int)ft_strlen(line);
-	if (line[line_length - 1] == '\n')
-		line_length--;
-	if (line_length > max_line_len)
-		max_line_len = line_length;
-	if (line_length != max_line_len)
-	{
-		printf("Error: Map is not square \n", line_length, max_line_len, line_num);
-		free(line);
-		close(fd);
-		return error("Map is not square");
-	}
-	free(line);
-	game->map.height++;
-	line = get_next_line(fd);
-	line_num++;
-}
-close(fd);
-game->map.width = max_line_len;
-game->map.grid = (char **)malloc(sizeof(char *) * game->map.height);
-map_grid_error(game);
-*w_w = game->map.width * T_S;
-*w_h = game->map.height * T_S;
-} */
-
 void	process_background(t_game *g)
 {
 	int	x;
@@ -149,21 +110,4 @@ void	process_background(t_game *g)
 		}
 		y++;
 	}
-}
-
-char	*ft_strnstr(const char *big, const char *little, size_t len)
-{
-	size_t	little_len;
-
-	if (*little == '\0')
-		return ((char *)big);
-	little_len = ft_strlen(little);
-	while (*big != '\0' && len-- >= little_len)
-	{
-		if (*big == *little && ft_strncmp(big, little, little_len) == 0)
-			return ((char *)big);
-		big++;
-		printf("valor de strnstr es %s %s \n", big, little);
-	}
-	return (NULL);
 }

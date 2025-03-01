@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:11:32 by iziat-hi          #+#    #+#             */
-/*   Updated: 2025/03/01 12:19:29 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:50:44 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@
 # include <sys/uio.h>
 # include <errno.h>
 # include <stdbool.h>
-
-
 # define W_WIDTH 1
 # define W_HEIGHT 1 
-
 # define KEY_ESC 65307
 # define KEY_CLOSE 33
 # define KEY_UP 65362
@@ -106,6 +103,7 @@ typedef struct s_game
 	int			size;
 	int			door_open;
 	int			collected_coins;
+	char		**backup_map;
 	t_map		map;
 	t_player	player;
 	t_fill		fill;
@@ -172,13 +170,14 @@ void		print_map(const char *map_path);
 void		init_game(const char *map_path, t_game *game);
 void		start_game(t_game *game);
 void		free_map(char **map, int height);
+void		free_map_2025(t_game *game, int height);
 int			key_hook(int keycode, t_game *game);
 int			close_window(t_game *game);
 void		error(const char *message);
 void		*ft_calloc(size_t count, size_t size);
 int			randomizer(int min, int max);
 size_t		ft_strlen(const char *str);
-char		*ft_strchr(const char *s, int c);
+char		*ft_strchr2(const char *s, int c);
 char		*ft_strjoin(char const *s1, char const *s2);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
@@ -213,5 +212,14 @@ void		count_assist(int fd, char *line, int max_line_len, int line_num);
 void		check_fill_correct(t_game *game);
 void		verification(t_game *game);
 void		check_perimeters(t_game *game);
+char		*ft_strchr(const char *str, char character);
+char		*ft_strdup(const char *s1);
 
+char		*ft_gnl_strjoin(char *line, const char *buffer);
+char		*get_next_line(int fd);
+char		*excess(char *deposit);
+size_t		ft_strlen(const char *str);
+char		*cut_line(char *deposit);
+void		*ft_calloc(size_t count, size_t size);
+//clear && make re && make clean && valgrind  -s --leak-check=full --show-leak-kinds=all ./so_long maps/map5.ber
 #endif

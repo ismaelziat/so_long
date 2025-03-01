@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:19 by iziat-hi          #+#    #+#             */
-/*   Updated: 2025/03/01 12:36:28 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 13:55:22 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	count_assist(int fd, char *line, int max_line_len, int line_num)
 
 void	verification_recursivity(t_game *game, int y, int x)
 {
-	if (game->map.grid[y][x] == 'E')
+	if (game->backup_map[y][x] == 'E')
 	{
 		game->map.exit_found = true;
 		return ;
 	}
-	if (game->map.grid[y][x] == '1' || game->map.grid[y][x] == 'X')
+	if (game->backup_map[y][x] == '1' || game->backup_map[y][x] == 'X')
 		return ;
-	if (game->map.grid[y][x] == 'C')
+	if (game->backup_map[y][x] == 'C')
 		game->map.fill_coin++;
-	game->map.grid[y][x] = 'X';
+	game->backup_map[y][x] = 'X';
 	verification_recursivity(game, y + 1, x);
 	verification_recursivity(game, y - 1, x);
 	verification_recursivity(game, y, x + 1);
@@ -65,25 +65,26 @@ char	**copy_map(char **original, int height)
 		i++;
 	}
 	copy[i] = NULL;
+	i = 0;
+	printf("ORIGINAL\n");
+	while (i < height)
+		printf("%s\n", original[i++]);
+	i = 0;
+	printf("\n");
+	printf("NUEVO\n");
+	while (i < height)
+		printf("%s\n", copy[i++]);
 	return (copy);
 }
 
 void	verification(t_game *game)
 {
-	char	**backup_map;
-
 	game->map.fill_coin = 0;
 	game->map.exit_found = false;
-	backup_map = copy_map(game->map.grid, game->map.height);
+	game->backup_map = copy_map(game->map.grid, game->map.height);
 	verification_recursivity(game, game->player.y, game->player.x);
-	free_map(backup_map, game->map.height);
+	free_map(game->backup_map, game->map.height);
 }
-
-/*void	verification(t_game *game)
-{
-	game->map.fill_coin = 0;
-	verification_recursivity(game, game->player.y, game->player.x);
-}*/
 
 void	check_fill_correct(t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 12:36:28 by iziat-hi          #+#    #+#             */
-/*   Updated: 2025/03/01 11:37:43 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:50:17 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	win_game(t_game *g, int new_y, int new_x)
 {
 	if ((g->map.grid[new_y][new_x] == 'E') && (g->door_open == 1))
 	{
-		close_window(g);
 		printf("has ganado \n");
+		printf("map height is %i\n", g->map.height);
+		close_window(g);
+		free_map_2025(g, g->map.height);
 	}
 }
 
@@ -62,4 +64,36 @@ void	free_map(char **map, int height)
 		i++;
 	}
 	free(map);
+}
+
+void	free_map_2025(t_game *game, int height)
+{
+	int	i;
+
+	if (!game->map.grid)
+		return ;
+	i = 0;
+	while (i < height)
+	{
+		free(game->map.grid[i]);
+		i++;
+	}
+	free(game->map.grid);
+}
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	little_len;
+
+	if (*little == '\0')
+		return ((char *)big);
+	little_len = ft_strlen(little);
+	while (*big != '\0' && len-- >= little_len)
+	{
+		if (*big == *little && ft_strncmp(big, little, little_len) == 0)
+			return ((char *)big);
+		big++;
+		printf("valor de strnstr es %s %s \n", big, little);
+	}
+	return (NULL);
 }

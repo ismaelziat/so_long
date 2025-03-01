@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 15:10:33 by iziat-hi          #+#    #+#             */
-/*   Updated: 2024/08/27 13:10:38 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 13:56:00 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-
-/* int	main(void)
-{
-	int	min;
-	int	max;
-	int	random_value;
-
-	min = 1;
-	max = 100;
-	random_value = randomizer(min, max);
-	if (random_value != -1)
-		printf("%d\n", random_value);
-	else
-		printf("rango inválido.\n");
-	return (0);
-}
- */

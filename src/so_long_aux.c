@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 12:21:18 by iziat-hi          #+#    #+#             */
-/*   Updated: 2025/03/01 11:47:35 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 13:10:17 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,6 @@ int	close_window(t_game *game)
 	return (0);
 }
 
-/*void	init_game(const char *map_path, t_game *game)
-{
-	int	w_width;
-	int	w_height;
-
-	count_map_lines(map_path, game);
-	count_x_y(map_path, game, &w_width, &w_height);
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		error("Failed to initialize MLX");
-	game->wi = mlx_new_window(game->mlx, w_width, w_height, "Game Title");
-	if (!game->wi)
-		error("Failed to create window");
-	load_sprites(game);
-	load_map_content(map_path, game);
-	process_map(game);
-	//verification(game);
-	//check_fill_correct(game);
-	mlx_key_hook(game->wi, key_hook, game);
-	mlx_hook(game->wi, 17, 0, close_window, game);
-	printf("la funcion ha funcionado correctamente \n");
-}*/
 void	init_game(const char *map_path, t_game *game)
 {
 	int	w_width;
@@ -81,7 +59,7 @@ void	init_game(const char *map_path, t_game *game)
 	verification(game);
 	check_fill_correct(game);
 	mlx_key_hook(game->wi, key_hook, game);
-} 
+}
 
 void	start_game(t_game *game)
 {

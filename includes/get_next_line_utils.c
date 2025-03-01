@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 12:49:27 by iziat-hi          #+#    #+#             */
-/*   Updated: 2024/08/16 14:01:12 by iziat-hi         ###   ########.fr       */
+/*   Created: 2024/06/04 15:49:23 by dangonz3          #+#    #+#             */
+/*   Updated: 2025/03/01 17:59:15 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,71 +15,70 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	l;
+	size_t	i;
 
-	l = 0;
-	while (*str != '\0')
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_gnl_strjoin(char *line, const char *buffer)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	if (!line)
 	{
-		l++;
+		line = (char *)ft_calloc(1, sizeof(char));
+		line[0] = '\0';
+	}
+	if (!line || !buffer)
+		return (NULL);
+	str = ft_calloc((ft_strlen(line) + ft_strlen(buffer) + 1), sizeof(char));
+	if (!str)
+		return (NULL);
+	i = -1;
+	j = 0;
+	while (line[++i])
+		str[i] = line[i];
+	while (buffer[j])
+		str[i++] = buffer[j++];
+	str[ft_strlen(line) + ft_strlen(buffer)] = '\0';
+	free (line);
+	return (str);
+}
+
+char	*ft_strchr(const char *str, char character)
+{
+	if (!str)
+		return (NULL);
+	while (*str)
+	{
+		if (*str == character)
+			return ((char *)str);
 		str++;
 	}
-	return (l);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == (char)c)
-		return ((char *)s);
+	if (character == '\0')
+		return ((char *)str);
 	return (NULL);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	size_t	l1;
-	size_t	l2;
-	char	*join;
-	char	*start_join;
-
-	if (!s1 || !s2)
-		return (NULL);
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	join = malloc(l1 + l2 + 1);
-	start_join = join;
-	if (join != NULL)
-	{
-		while (*s1 != '\0')
-			*join++ = *s1++;
-		while (*s2 != '\0')
-			*join++ = *s2++;
-		*join = '\0';
-	}
-	return (start_join);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	while (n > 0)
-	{
-		*(char *)s = 0;
-		s++;
-		n--;
-	}
 }
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*a;
+	char	*str;
+	char	*temp;
 
-	a = malloc(count * size);
-	if (a == NULL)
+	str = (void *)malloc(count * size);
+	if (!str)
 		return (NULL);
-	ft_bzero(a, count * size);
-	return (a);
+	temp = str;
+	while (size)
+	{
+		*temp = '0';
+		size--;
+		temp++;
+	}
+	return (str);
 }

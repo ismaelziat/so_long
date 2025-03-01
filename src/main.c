@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:11:04 by iziat-hi          #+#    #+#             */
-/*   Updated: 2025/03/01 12:18:38 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:35:27 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int	main(int argc, char **argv)
 {
 	t_game		game;
-	//t__c_game	c_game;
 
 	if (argc != 2)
 	{
