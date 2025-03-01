@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 12:21:18 by iziat-hi          #+#    #+#             */
-/*   Updated: 2025/03/01 13:10:17 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 19:30:24 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	key_hook(int keycode, t_game *g)
 {
 	if (keycode == KEY_ESC)
 	{
+		free_map_2025(g, g->map.height);
 		close_window(g);
-		exit(0);
 	}
 	else if (keycode == KEY_UP)
 		move_up(g);

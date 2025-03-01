@@ -6,7 +6,7 @@
 /*   By: iziat-hi <iziat-hi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:55:13 by iziat-hi          #+#    #+#             */
-/*   Updated: 2025/03/01 18:34:58 by iziat-hi         ###   ########.fr       */
+/*   Updated: 2025/03/01 19:19:54 by iziat-hi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ void	count_map_lines(const char *file_path, t_game *game)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	game->map.grid = (char **)malloc(sizeof(char *) * game->map.height);
-	if (!game->map.grid)
-		error("Memory allocation failed for map");
 	free(line);
 }
 
